@@ -44,6 +44,14 @@ Extracts the tarball to the given location.  Must either be an
 empty directory, or a non-existent directory that can be made.
 If C<$path> is relative then it will be relative to C<~/.easyrsa3>.
 
+=head1 SEE ALSO
+
+=over 4
+
+=item L<https://community.openvpn.net/openvpn/wiki/EasyRSA3-OpenVPN-Howto>
+
+=back
+
 =cut
 
 sub tarball

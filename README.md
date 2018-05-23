@@ -34,6 +34,10 @@ Extracts the tarball to the given location.  Must either be an
 empty directory, or a non-existent directory that can be made.
 If `$path` is relative then it will be relative to `~/.easyrsa3`.
 
+# SEE ALSO
+
+- [https://community.openvpn.net/openvpn/wiki/EasyRSA3-OpenVPN-Howto](https://community.openvpn.net/openvpn/wiki/EasyRSA3-OpenVPN-Howto)
+
 # AUTHOR
 
 Graham Ollis <plicease@cpan.org>
