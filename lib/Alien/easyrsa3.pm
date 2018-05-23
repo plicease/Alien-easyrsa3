@@ -72,7 +72,6 @@ sub extract
     shift @name;
     my $name = join '/', @name;
     next if $name eq '';
-    warn "extracting $CWD/$name";
     $file->extract($name) || Carp::croak "unable to extract $name";
   }
 }
