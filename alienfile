@@ -1,11 +1,36 @@
 use alienfile;
-plugin 'PkgConfig' => 'libfoo';
+use Path::Tiny qw( path );
+
+meta->prop->{arch} = 0;
+
+configure {
+  requires 'Path::Tiny';
+};
+
+probe sub { 'share' };
+
 share {
   plugin Download => (
-    url => 'http://...',
-    filter => qr/*\.tar\.gz$/,
+    url => 'https://github.com/OpenVPN/easy-rsa/releases/',
+    filter => qr/^EasyRSA-3\.[0-9\.]*\.tgz$/,
     version => qr/([0-9\.]+)/,
   );
-  plugin Extract => 'tar.gz';
-  plugin 'Build::Autoconf';
+
+  extract sub {
+    my($build) = @_;
+    my $dl = path($build->install_prop->{download});
+    my $fn = $dl->basename;
+    $fn =~ s/\.tgz$/.tar.gz/;
+    $dl->copy($fn);
+    $build->runtime_prop->{my_tarball} = $fn;
+  };
+  
+  build sub {
+    my($build) = @_;
+    path(
+      $build->runtime_prop->{my_tarball}
+    )->copy(
+      path($build->install_prop->{stage})->child($build->runtime_prop->{my_tarball})
+    );
+  };
 }
