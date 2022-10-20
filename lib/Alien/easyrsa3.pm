@@ -34,7 +34,7 @@ In addition to the normal L<Alien::Base> methods, you get:
 
  my $path = Alien::easyrsa3->tarball;
 
-Returns a L<Path::Tiny> object of the taball location.
+Returns a L<Path::Tiny> object of the tarball location.
 
 =head2 extract
 

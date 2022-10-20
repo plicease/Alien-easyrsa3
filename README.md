@@ -1,16 +1,18 @@
-# Alien::easyrsa3 [![Build Status](https://secure.travis-ci.org/plicease/Alien-easyrsa3.png)](http://travis-ci.org/plicease/Alien-easyrsa3)
+# Alien::easyrsa3
 
 Download and use easy-rsa version 3
 
 # SYNOPSIS
 
-    use Alien::easyrsa3;
-    
-    # extracts easy-rsa version 3 to ~/.easyrsa3/ca
-    Alien::easyrsa3->extract('ca');
+```perl
+use Alien::easyrsa3;
 
-    # extracts easy-rsa version 3 to /full/path/eesa3
-    Alien::easyrsa3->extract('/full/path/ersa3');
+# extracts easy-rsa version 3 to ~/.easyrsa3/ca
+Alien::easyrsa3->extract('ca');
+
+# extracts easy-rsa version 3 to /full/path/eesa3
+Alien::easyrsa3->extract('/full/path/ersa3');
+```
 
 # DESCRIPTION
 
@@ -22,13 +24,17 @@ In addition to the normal [Alien::Base](https://metacpan.org/pod/Alien::Base) me
 
 ## tarball
 
-    my $path = Alien::easyrsa3->tarball;
+```perl
+my $path = Alien::easyrsa3->tarball;
+```
 
-Returns a [Path::Tiny](https://metacpan.org/pod/Path::Tiny) object of the taball location.
+Returns a [Path::Tiny](https://metacpan.org/pod/Path::Tiny) object of the tarball location.
 
 ## extract
 
-    Alien::easyrsa3->extract($path);
+```
+Alien::easyrsa3->extract($path);
+```
 
 Extracts the tarball to the given location.  Must either be an
 empty directory, or a non-existent directory that can be made.

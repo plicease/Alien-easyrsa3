@@ -28,9 +28,9 @@ share {
     my $dst = path($build->install_prop->{stage})->child(do {
       my $fn = $src->basename;
       $fn =~ s/\.tgz$/.tar.gz/;
+      $build->runtime_prop->{my_tarball} = $fn;
       $fn;
     });
-
     $src->copy($dst);
   };
 }
