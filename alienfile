@@ -10,27 +10,27 @@ configure {
 probe sub { 'share' };
 
 share {
-  plugin Download => (
-    url => 'https://github.com/OpenVPN/easy-rsa/releases/',
-    filter => qr/^EasyRSA-3\.[0-9\.]*\.tgz$/,
-    version => qr/([0-9\.]+)/,
+  plugin 'Download::GitHub' => (
+    github_user => 'OpenVPN',
+    github_repo => 'easy-rsa',
+    asset => 1,
+    asset_name => qr/^EasyRSA.*\.tgz$/,
+    asset_convert_version => sub {
+      my $version = shift;
+      $version =~ s/^v//;
+      $version;
+    },
   );
 
-  extract sub {
-    my($build) = @_;
-    my $dl = path($build->install_prop->{download});
-    my $fn = $dl->basename;
-    $fn =~ s/\.tgz$/.tar.gz/;
-    $dl->copy($fn);
-    $build->runtime_prop->{my_tarball} = $fn;
-  };
-  
   build sub {
     my($build) = @_;
-    path(
-      $build->runtime_prop->{my_tarball}
-    )->copy(
-      path($build->install_prop->{stage})->child($build->runtime_prop->{my_tarball})
-    );
+    my $src = path($build->install_prop->{download});
+    my $dst = path($build->install_prop->{stage})->child(do {
+      my $fn = $src->basename;
+      $fn =~ s/\.tgz$/.tar.gz/;
+      $fn;
+    });
+
+    $src->copy($dst);
   };
 }

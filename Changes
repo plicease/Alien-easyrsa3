@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Update for new GitHub interface.
 
 0.01      2018-05-23 09:23:10 -0400
   - initial version
